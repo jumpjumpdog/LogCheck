@@ -88,9 +88,6 @@ class BaseBandEqm:
     def setId(self, id):
         self.baseBandEqmId = id
 
-
-
-
 #
 class Site:
     cell_dic = {}

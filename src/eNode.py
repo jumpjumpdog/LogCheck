@@ -11,14 +11,16 @@ class eNode:
         self.cellToBBp = {}
 
     class BBP:
+        type = ""
         portOne=""
         portTwo=""
         poerThree=""
 
-        def __init__(self, portOne, portTwo, portThree):
+        def __init__(self, portOne, portTwo, portThree,type):
             self.portOne = portOne
             self.portTwo = portTwo
             self.portThree = portThree
+            self.type = type
 
         def getPortOne(self):
             return self.portOne
@@ -29,21 +31,34 @@ class eNode:
         def getPortThree(self):
             return self.portThree
 
+        def getType(self):
+            return  self.type
+
     def getName(self):
         return self.name
 
     def getId(self):
         return self.id
 
+
+    def getCellBbp(self):
+        return  self.cellToBBp
+
     def setName(self,name):
         self.name = name
 
     def setId(self, id):
-        return  self.id
+        self.id = id
 
-    def addCellBpp(self, localCellId, bbp):
+    def setType(self,type):
+        self.setType(type)
+
+    def addCellBbp(self, localCellId, bbp):
         if localCellId in self.cellToBBp.keys():
-            return None
+            temp = self.cellToBBp[localCellId]
+            temp.append(bbp)
         else:
-            self.cellToBBp[localCellId] = bbp
+            self.cellToBBp[localCellId] = []
+            self.cellToBBp[localCellId].append(bbp)
+
 
