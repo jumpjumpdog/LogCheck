@@ -6,7 +6,7 @@ import re
 context = ""
 site_dict = {}
 enode_dict= {}
-with open("DSP_CELLPHYTOPO.txt","rb") as f:
+with open("MY_DSP_CELLPHYTOPO.txt","rb") as f:
     context = f.read()
 
 def getAllSites():

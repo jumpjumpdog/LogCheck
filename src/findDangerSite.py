@@ -11,7 +11,7 @@ g_site_dict = {}
 # 遍历所有的site，察看当前cell绑定的基带设备是否在site
 def findDangerSite():
     for site_name in g_site_dict.keys():
-        site = g_site_dict.list[site_name]
+        site = g_site_dict[site_name]
         cells = site.getCellDic()
         for name,cell in cells.items():
             eqmId  = cell.getEqmId()
@@ -109,7 +109,7 @@ def handleOneFile(path):
             processOneSite(site_name, content)
 
 def outPut(outputPath):
-    with open("xxx.csv", "wb+") as csvfile:
+    with open("danger_sites.csv", "wb+") as csvfile:
         fieldNames = ["site_name", "cell_id", "reason"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldNames)
         writer.writeheader()

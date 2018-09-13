@@ -21,7 +21,7 @@ from Site import BaseBandEqm
 
 
 with open("xxx.csv", "wb+") as csvfile:
-    fieldNames = ["site_name", "site_id", "cell_id","bbq_id","bbq_type","port_one","port_two","port_three"]
+    fieldNames = ["site_name", "site_id", "cell_id","bbq_id","port_one","port_two","port_three"]
     writer = csv.DictWriter(csvfile, fieldnames=fieldNames)
     writer.writeheader()
     writer.writerow({"site_name":"AAAAAA"})

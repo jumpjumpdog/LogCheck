@@ -1,0 +1,60 @@
+DSP CELLPHYTOPO:;
+EAA387
++++    EAA387        2018-08-27 22:09:57
+O&M    #808455667
+%%/*1887116537*/DSP CELLPHYTOPO:;%%
+RETCODE = 0  Operation succeeded.
+
+Display Physical Topology of Cells
+----------------------------------
+eNodeB ID  Local Cell ID  RF Module Information  Connected BBP Port Information  Served BBP Information  Served Bbp Primary Secondary Mode
+
+
+413691     21              0-70-0                 0-0-4-0                         0-0-2                   PRIMARY                          
+413691     10              0-71-0                 0-0-4-1                         0-0-2                   PRIMARY                          
+413691     9               0-72-0                 0-0-4-2                         0-0-2                   PRIMARY                          
+413691     8               0-80-0                 0-0-2-0                         0-0-1                   PRIMARY                          
+413691     6               0-81-0                 0-0-2-1                         0-0-5                   PRIMARY                          
+413691     5               0-82-0                 0-0-2-2                         0-0-5                   PRIMARY                          
+413691     4               0-70-0                 0-0-4-0                         0-0-5                   PRIMARY                          
+413691     3               0-71-0                 0-0-4-1                         0-0-4                   PRIMARY                          
+413691     2               0-72-0                 0-0-4-2                         0-0-4                   PRIMARY                          
+413691     1               0-80-0                 0-0-2-0                         0-0-1                   PRIMARY                          
+
+
+---    END
+
+
+
+sdsddds
+
+
+
+DSP CELLPHYTOPO:;
+EMK229
++++    EMK229       2018-08-27 22:09:57
+O&M    #808455667
+%%/*1887116537*/DSP CELLPHYTOPO:;%%
+RETCODE = 0  Operation succeeded.
+
+Display Physical Topology of Cells
+----------------------------------
+eNodeB ID  Local Cell ID  RF Module Information  Connected BBP Port Information  Served BBP Information  Served Bbp Primary Secondary Mode
+
+
+413692     23              0-70-0                 0-0-4-0                         0-0-2                   PRIMARY                          
+413692     22              0-71-0                 0-0-4-1                         0-0-2                   PRIMARY                          
+413692     12              0-72-0                 0-0-4-2                         0-0-2                   PRIMARY                          
+413692     11              0-80-0                 0-0-2-0                         0-0-1                   PRIMARY                          
+413692     9               0-81-0                 0-0-2-1                         0-0-5                   PRIMARY                          
+413692     8               0-82-0                 0-0-2-2                         0-0-5                   PRIMARY                          
+413692     7               0-70-0                 0-0-4-0                         0-0-5                   PRIMARY                          
+413692     6               0-71-0                 0-0-4-1                         0-0-4                   PRIMARY                          
+413692     5               0-72-0                 0-0-4-2                         0-0-4                   PRIMARY                          
+413692     4               0-80-0                 0-0-2-0                         0-0-1                   PRIMARY                          
+413692     3               0-81-0                 0-0-2-1                         0-0-1                   PRIMARY                          
+413692     2               0-82-0                 0-0-2-2                         0-0-4                   PRIMARY   
+413692     1               0-82-0                 0-0-3-2                         0-0-4                   PRIMARY   
+
+
+---    END
