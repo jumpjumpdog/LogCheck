@@ -12,27 +12,28 @@ class eNode:
 
     class BBP:
         type = ""
-        portOne=""
-        portTwo=""
-        poerThree=""
+        element = ["","",""]
 
         def __init__(self, portOne, portTwo, portThree,type):
-            self.portOne = portOne
-            self.portTwo = portTwo
-            self.portThree = portThree
+            self.element[0] = portOne
+            self.element[1] = portTwo
+            self.element[2] = portThree
             self.type = type
 
         def getPortOne(self):
-            return self.portOne
+            return self.element[0]
 
         def getPortTwo(self):
-            return self.portTwo
+            return self.element[1]
 
         def getPortThree(self):
-            return self.portThree
+            return self.element[2]
 
         def getType(self):
             return  self.type
+
+        def getElement(self):
+            return self.element
 
     def getName(self):
         return self.name
@@ -43,6 +44,10 @@ class eNode:
 
     def getCellBbp(self):
         return  self.cellToBBp
+
+
+    def getBbpByCellID(self, cellId):
+        return None if cellId not in self.cellToBBp.keys() else self.cellToBBp[cellId]
 
     def setName(self,name):
         self.name = name
@@ -60,5 +65,9 @@ class eNode:
         else:
             self.cellToBBp[localCellId] = []
             self.cellToBBp[localCellId].append(bbp)
+
+
+    def getBBpByCellId(self, id):
+        return None if id not in self.cellToBBp.keys() else self.cellToBBp[id]
 
 

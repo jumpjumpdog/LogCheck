@@ -18,23 +18,19 @@ def findDangerSite():
             # 如果未绑定则不处理
             if eqmId=="":
                 continue
-            # 如果绑定则检测对应的设备是否符合规则(这种情况不存在)
-            # if not site.containEqm(eqmId):
-            #     cell.setReason("noeqm")
-            #     site.setSafeStatus(False)
-            #     site.addDangerCell(cell)
-            #     continue
             eqm = site.getEqm(eqmId)
             if eqm ==None:
                 continue
             if(eqm.getType()!="2"):
                 cell.setReason("typeError")
+                cell.setSafeStatus(False)
                 site.setSafeStatus(False)
                 site.addDangerCell(cell)
                 continue
 
             if(eqm.getElementNum()!=1):
                 cell.setReason("wrongElement")
+                cell.setSafeStatus(False)
                 site.setSafeStatus(False)
                 site.addDangerCell(cell)
                 continue
@@ -56,6 +52,7 @@ def processOneSite(site_name,content):
     for eqm in baseband_eqms:
         baseband_eqm_id = eqm.getElementsByTagName("BASEBANDEQMID")[0].childNodes[0].data
         baseband = BaseBandEqm(baseband_eqm_id)
+        site.avaliBBqIdDecrease(baseband_eqm_id)
 
         baseband_eqm_type = eqm.getElementsByTagName("BASEBANDEQMTYPE")[0].childNodes[0].data
         baseband.setType(baseband_eqm_type)

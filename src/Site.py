@@ -13,6 +13,7 @@ class Cell:
     reason = None
 
 
+
     def __init__(self, id):
         self.id  = id
         self.isSafe = True
@@ -28,7 +29,7 @@ class Cell:
         return self.baseBandEqmId
 
 
-    def isSafe(self):
+    def safe(self):
         return self.isSafe
 
     def getReason(self):
@@ -43,6 +44,9 @@ class Cell:
     def setEqmId(self, eqmId):
         self.baseBandEqmId = eqmId
 
+
+    def setSafeStatus(self, status):
+        self.isSafe = status
 
     def setReason(self, reason):
         self.isSafe = False
@@ -73,6 +77,9 @@ class BaseBandEqm:
     def addElement(self, element):
         self.elements.append(element)
 
+    def getElements(self):
+        return  self.elements
+
     def getId(self):
         return self.baseBandEqmId
 
@@ -88,14 +95,22 @@ class BaseBandEqm:
     def setId(self, id):
         self.baseBandEqmId = id
 
+    def containElement(self,element):
+        if element in self.elements:
+            return True
+        return  False
+
+
 #
 class Site:
+    availBBQId = []
+
     cell_dic = {}
 
     danger_cells = []
 
     name = ""
-    # 存在的基带设备
+
     AllBaseBandEqm = {}
     # 是否安全
     isSafe = True
@@ -105,6 +120,7 @@ class Site:
         self.cell_dic = {}
         self.danger_cells = []
         self.isSafe = True
+        self.availBBQId = [str(i) for i in range(0,24)]
 
     def search(self, local_cell_id):
         if local_cell_id in self.cell_dic.keys():
@@ -133,6 +149,9 @@ class Site:
     def getDangerCells(self):
         return self.danger_cells
 
+    def getAvailBBQId(self):
+        return self.availBBQId
+
     def addCell(self, local_cell_id):
         cell = self.search(local_cell_id)
         if cell:
@@ -159,5 +178,8 @@ class Site:
     def containEqm(self, eqmId):
         return eqmId in self.AllBaseBandEqm.keys()
 
+
+    def avaliBBqIdDecrease(self,bbqId):
+        self.availBBQId.remove(bbqId)
 
 
