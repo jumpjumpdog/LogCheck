@@ -38,10 +38,13 @@ def findDangerSite():
 
 
 
-def processOneSite(site_name,content):
-    site = Site(site_name)
+def processOneSite(content):
     dom = xml.dom.minidom.parseString(content)
     root = dom.documentElement
+
+    # 获取site_name
+    site_name = root.getElementsByTagName("NODENAME")[0].childNodes[0].data
+    site = Site(site_name)
     # 获取cell和eqm绑定节点
     euCellPriBBEqm = root.getElementsByTagName("EuCellPriBBEqm")
     # 获取所有cell
@@ -51,20 +54,20 @@ def processOneSite(site_name,content):
 
     for eqm in baseband_eqms:
         baseband_eqm_id = eqm.getElementsByTagName("BASEBANDEQMID")[0].childNodes[0].data
-        baseband = BaseBandEqm(baseband_eqm_id)
+        bbp = BaseBandEqm(baseband_eqm_id)
         site.avaliBBqIdDecrease(baseband_eqm_id)
 
-        baseband_eqm_type = eqm.getElementsByTagName("BASEBANDEQMTYPE")[0].childNodes[0].data
-        baseband.setType(baseband_eqm_type)
+        bbp_type = eqm.getElementsByTagName("BASEBANDEQMTYPE")[0].childNodes[0].data
+        bbp.setType(bbp_type)
 
         elements = eqm.getElementsByTagName("element")
         for element in elements:
             CN = element.getElementsByTagName("CN")[0].childNodes[0].data
             SRN = element.getElementsByTagName("SRN")[0].childNodes[0].data
             SN = element.getElementsByTagName("SN")[0].childNodes[0].data
-            new_element = baseband.Element(CN, SRN, SN)
-            baseband.addElement(new_element)
-        site.addBaseBandEqm(baseband)
+            new_element = bbp.Element(CN, SRN, SN)
+            bbp.addElement(new_element)
+        site.addBaseBandEqm(bbp)
 
 
     for cell in cells:
@@ -75,11 +78,12 @@ def processOneSite(site_name,content):
         attributes = eu.getElementsByTagName("attributes")
         for attribute in attributes:
             local_cell_id = attribute.getElementsByTagName("LocalCellId")
-            eqmId = attribute.getElementsByTagName("PriBaseBandEqmId")
+            bbp_id = attribute.getElementsByTagName("PriBaseBandEqmId")
             if len(local_cell_id) != 0:
                 local_cell_id = local_cell_id[0].childNodes[0].data
-                site.cell_dic[local_cell_id].setEqmId(eqmId[0].childNodes[0].data)
-                site.cell_dic[local_cell_id].setEqm(site.getEqm(eqmId[0].childNodes[0].data))
+                cell = site.search(local_cell_id)
+                cell.setEqmId(bbp_id[0].childNodes[0].data)
+                cell.setEqm(site.getEqm(bbp_id[0].childNodes[0].data))
     g_site_dict[site.getName()] = site
 
 
@@ -100,10 +104,10 @@ def findSite(path):
 
 def handleOneFile(path):
     if path.find(".gz")!=-1:
-        site_name = path.split("\\")[1]
+        # site_name = path.split("\\")[1]
         with gzip.GzipFile(mode="rb",fileobj=open(path, 'rb')) as g:
             content = g.read()
-            processOneSite(site_name, content)
+            processOneSite(content)
 
 def outPut(outputPath):
     with open("danger_sites.csv", "wb+") as csvfile:

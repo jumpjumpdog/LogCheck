@@ -23,10 +23,6 @@ def getAllSites():
 
 
 def getDspInfo():
-    # name = "GL82100"
-    # content = site_dict[name]
-    # site_dict.clear()
-    # site_dict[name]  = content
     for siteName in site_dict.keys():
         topology = site_dict[siteName]
         pattern = "((\d+)\s+(\d+)\s+\d+-\d+-\d+\s+(\d+-\d+-\d+-\d+\,{0,1})+\s+(\d+)-(\d+)-(\d+)\s+(\S+))"
@@ -50,5 +46,3 @@ def getDspInfo():
 
 
 
-    # a = enode_dict["GL82100"]
-    # print a

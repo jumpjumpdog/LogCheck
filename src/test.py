@@ -1,4 +1,10 @@
 import os, sys, xml.dom.minidom, csv
+import threading
+
+import time
+
+import thread
+
 from Site import BaseBandEqm
 
 
@@ -19,9 +25,43 @@ from Site import BaseBandEqm
 #     print  element.getElementsByTagName("SRN")[0].childNodes[0].data
 #     print  element.getElementsByTagName("SN")[0].childNodes[0].data
 
+class Singleton:
+    password = "123"
+    def __init__(self,name):
+        self.name = name
+    def printName(self):
+        print self.name
+    def printPassword(self):
+        print  self.password
+    def printIdPassword(self):
+        print id(self.password)
+        print id(self.name)
 
-with open("xxx.csv", "wb+") as csvfile:
-    fieldNames = ["site_name", "site_id", "cell_id","bbq_id","port_one","port_two","port_three"]
-    writer = csv.DictWriter(csvfile, fieldnames=fieldNames)
-    writer.writeheader()
-    writer.writerow({"site_name":"AAAAAA"})
+
+def print_time(thread_name, delay):
+    count = 0
+    while count<5:
+        time.sleep(delay)
+        count += 1
+        print  "%s: %s"%(thread_name, time.ctime(time.time()))
+
+
+
+if __name__ == "__main__":
+    # singleton = Singleton("sjw")
+    # singleton.printName()
+    # singleton.printPassword()
+    # singleton2 = Singleton("lsl")
+    # singleton2.printPassword()
+    #
+    # singleton.printIdPassword()
+    # singleton2.printIdPassword()
+
+    try:
+        thread.start_new_thread(print_time, ("Thread-1",2,))
+        thread.start_new_thread(print_time,("Thread-2",4,))
+    except:
+        print "Error:unable to start a thread"
+
+    threading.current_thread.join
+

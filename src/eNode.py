@@ -15,6 +15,7 @@ class eNode:
         element = ["","",""]
 
         def __init__(self, portOne, portTwo, portThree,type):
+            self.element = ["", "", ""]
             self.element[0] = portOne
             self.element[1] = portTwo
             self.element[2] = portThree

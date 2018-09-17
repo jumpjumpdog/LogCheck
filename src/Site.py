@@ -18,7 +18,7 @@ class Cell:
         self.id  = id
         self.isSafe = True
         self.baseBandEqmId = ""
-        self.reason = None
+        self.reason = ""
 
 
 
@@ -119,6 +119,7 @@ class Site:
         self.name = name
         self.cell_dic = {}
         self.danger_cells = []
+        self.AllBaseBandEqm = {}
         self.isSafe = True
         self.availBBQId = [str(i) for i in range(0,24)]
 
